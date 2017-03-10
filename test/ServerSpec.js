@@ -11,7 +11,7 @@ var Link = require('../app/models/link');
 // NOTE: these tests are designed for mongo!
 /////////////////////////////////////////////////////
 
-xdescribe('', function() {
+describe('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -48,6 +48,7 @@ xdescribe('', function() {
             'url': 'http://www.roflzoo.com/'})
           .expect(200)
           .expect(function(res) {
+            console.log(res.body);
             expect(res.body.url).to.equal('http://www.roflzoo.com/');
             expect(res.body.code).to.be.ok;
           })
@@ -123,6 +124,7 @@ xdescribe('', function() {
           .get('/' + sha)
           .expect(302)
           .expect(function(res) {
+            console.log('spec 122', res.body);
             var redirect = res.headers.location;
             expect(redirect).to.equal('http://www.roflzoo.com/');
           })
